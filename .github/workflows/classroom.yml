@@ -20,7 +20,10 @@ jobs:
         test-name: Addition test
         setup-command: ''
         command: python aqa_tasks.py
-        input: 5\n3\n+\n
+        input: |
+          5
+          3
+          +
         expected-output: '8'
         comparison-method: exact
         timeout: 5
