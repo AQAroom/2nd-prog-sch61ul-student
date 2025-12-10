@@ -94,12 +94,12 @@ jobs:
       with:
         test-name: Деление на ноль (div by zero)
         setup-command: ''
-        command: python aqa_tasks.py > d_out.txt
+        command: python aqa_tasks.py
         input: |
           10
           0
           /
-        expected-output: Traceback
+        expected-output: error
         comparison-method: contains
         timeout: 5
         max-score: 15
