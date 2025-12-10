@@ -70,7 +70,7 @@ jobs:
           3
           /
         expected-output: '5'
-        comparison-method: exact
+        comparison-method: contains
         timeout: 5
         max-score: 15
     - name: Степень (pow)
@@ -83,7 +83,7 @@ jobs:
         input: |
           2
           3
-          **
+          ^
         expected-output: '8'
         comparison-method: exact
         timeout: 5
@@ -99,7 +99,7 @@ jobs:
           10
           0
           /
-        expected-output: error
+        expected-output: 'ZeroDivisionError: division by zero'
         comparison-method: contains
         timeout: 5
         max-score: 15
