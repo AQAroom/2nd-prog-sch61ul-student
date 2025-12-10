@@ -13,11 +13,11 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-    - name: Сложение
-      id: ''
+    - name: Сложение (add)
+      id: add
       uses: classroom-resources/autograding-io-grader@v1
       with:
-        test-name: Сложение
+        test-name: Сложение (add)
         setup-command: ''
         command: python aqa_tasks.py
         input: |
@@ -28,11 +28,11 @@ jobs:
         comparison-method: exact
         timeout: 5
         max-score: 15
-    - name: Вычитание
-      id: ''
+    - name: Вычитание (sub)
+      id: sub
       uses: classroom-resources/autograding-io-grader@v1
       with:
-        test-name: Вычитание
+        test-name: Вычитание (sub)
         setup-command: ''
         command: python aqa_tasks.py
         input: |
@@ -43,11 +43,11 @@ jobs:
         comparison-method: exact
         timeout: 5
         max-score: 15
-    - name: Умножение
-      id: ''
+    - name: Умножение (mul)
+      id: mul
       uses: classroom-resources/autograding-io-grader@v1
       with:
-        test-name: Умножение
+        test-name: Умножение (mul)
         setup-command: ''
         command: python aqa_tasks.py
         input: |
@@ -58,11 +58,11 @@ jobs:
         comparison-method: exact
         timeout: 5
         max-score: 15
-    - name: Деление
-      id: ''
+    - name: Деление (div)
+      id: div
       uses: classroom-resources/autograding-io-grader@v1
       with:
-        test-name: Деление
+        test-name: Деление (div)
         setup-command: ''
         command: python aqa_tasks.py
         input: |
@@ -73,11 +73,11 @@ jobs:
         comparison-method: exact
         timeout: 5
         max-score: 15
-    - name: Степень
-      id: ''
+    - name: Степень (pow)
+      id: pow
       uses: classroom-resources/autograding-io-grader@v1
       with:
-        test-name: Степень
+        test-name: Степень (pow)
         setup-command: ''
         command: python aqa_tasks.py
         input: |
@@ -88,11 +88,11 @@ jobs:
         comparison-method: exact
         timeout: 5
         max-score: 15
-    - name: Деление на ноль
-      id: ''
+    - name: Деление на ноль (div by zero)
+      id: div-by-zero
       uses: classroom-resources/autograding-io-grader@v1
       with:
-        test-name: Деление на ноль
+        test-name: Деление на ноль (div by zero)
         setup-command: ''
         command: python aqa_tasks.py
         input: |
@@ -103,11 +103,11 @@ jobs:
         comparison-method: contains
         timeout: 5
         max-score: 15
-    - name: Неизвестная операция
-      id: ''
+    - name: Неизвестная операция (unk)
+      id: unk
       uses: classroom-resources/autograding-io-grader@v1
       with:
-        test-name: Неизвестная операция
+        test-name: Неизвестная операция (unk)
         setup-command: ''
         command: python aqa_tasks.py
         input: |
@@ -121,6 +121,12 @@ jobs:
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
-        _RESULTS: "${{steps..outputs.result}}"
+        ADD_RESULTS: "${{steps.add.outputs.result}}"
+        SUB_RESULTS: "${{steps.sub.outputs.result}}"
+        MUL_RESULTS: "${{steps.mul.outputs.result}}"
+        DIV_RESULTS: "${{steps.div.outputs.result}}"
+        POW_RESULTS: "${{steps.pow.outputs.result}}"
+        DIV-BY-ZERO_RESULTS: "${{steps.div-by-zero.outputs.result}}"
+        UNK_RESULTS: "${{steps.unk.outputs.result}}"
       with:
-        runners: ",,,,,,"
+        runners: add,sub,mul,div,pow,div-by-zero,unk
