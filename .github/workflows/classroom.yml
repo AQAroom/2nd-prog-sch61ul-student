@@ -13,11 +13,11 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-    - name: Addition test
-      id: addition-test
+    - name: Сложение
+      id: ''
       uses: classroom-resources/autograding-io-grader@v1
       with:
-        test-name: Addition test
+        test-name: Сложение
         setup-command: ''
         command: python aqa_tasks.py
         input: |
@@ -28,9 +28,99 @@ jobs:
         comparison-method: exact
         timeout: 5
         max-score: 15
+    - name: Вычитание
+      id: ''
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Вычитание
+        setup-command: ''
+        command: python aqa_tasks.py
+        input: |
+          10
+          4
+          -
+        expected-output: '6'
+        comparison-method: exact
+        timeout: 5
+        max-score: 15
+    - name: Умножение
+      id: ''
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Умножение
+        setup-command: ''
+        command: python aqa_tasks.py
+        input: |
+          7
+          6
+          *
+        expected-output: '42'
+        comparison-method: exact
+        timeout: 5
+        max-score: 15
+    - name: Деление
+      id: ''
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Деление
+        setup-command: ''
+        command: python aqa_tasks.py
+        input: |
+          15
+          3
+          /
+        expected-output: '5'
+        comparison-method: exact
+        timeout: 5
+        max-score: 15
+    - name: Степень
+      id: ''
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Степень
+        setup-command: ''
+        command: python aqa_tasks.py
+        input: |
+          2
+          3
+          **
+        expected-output: '8'
+        comparison-method: exact
+        timeout: 5
+        max-score: 15
+    - name: Деление на ноль
+      id: ''
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Деление на ноль
+        setup-command: ''
+        command: python aqa_tasks.py
+        input: |
+          10
+          0
+          /
+        expected-output: error
+        comparison-method: contains
+        timeout: 5
+        max-score: 15
+    - name: Неизвестная операция
+      id: ''
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Неизвестная операция
+        setup-command: ''
+        command: python aqa_tasks.py
+        input: |
+          5
+          3
+          %
+        expected-output: неизвестная операция
+        comparison-method: contains
+        timeout: 5
+        max-score: 10
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
-        ADDITION-TEST_RESULTS: "${{steps.addition-test.outputs.result}}"
+        _RESULTS: "${{steps..outputs.result}}"
       with:
-        runners: addition-test
+        runners: ",,,,,,"
