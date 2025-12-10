@@ -94,7 +94,7 @@ jobs:
       with:
         test-name: Деление на ноль (div by zero)
         setup-command: ''
-        command: python aqa_tasks.py
+        command: python aqa_tasks.py > d_out.txt
         input: |
           10
           0
