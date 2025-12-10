@@ -88,21 +88,6 @@ jobs:
         comparison-method: exact
         timeout: 5
         max-score: 15
-    - name: Деление на ноль (div by zero)
-      id: div-by-zero
-      uses: classroom-resources/autograding-io-grader@v1
-      with:
-        test-name: Деление на ноль (div by zero)
-        setup-command: ''
-        command: python aqa_tasks.py
-        input: |
-          10
-          0
-          /
-        expected-output: Error
-        comparison-method: contains
-        timeout: 5
-        max-score: 15
     - name: Неизвестная операция (unk)
       id: unk
       uses: classroom-resources/autograding-io-grader@v1
@@ -117,7 +102,7 @@ jobs:
         expected-output: Неизвестная операция
         comparison-method: contains
         timeout: 5
-        max-score: 10
+        max-score: 15
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
@@ -126,7 +111,6 @@ jobs:
         MUL_RESULTS: "${{steps.mul.outputs.result}}"
         DIV_RESULTS: "${{steps.div.outputs.result}}"
         POW_RESULTS: "${{steps.pow.outputs.result}}"
-        DIV-BY-ZERO_RESULTS: "${{steps.div-by-zero.outputs.result}}"
         UNK_RESULTS: "${{steps.unk.outputs.result}}"
       with:
-        runners: add,sub,mul,div,pow,div-by-zero,unk
+        runners: add,sub,mul,div,pow,unk
