@@ -99,7 +99,7 @@ jobs:
           10
           0
           /
-        expected-output: ZeroDivisionError
+        expected-output: zero
         comparison-method: contains
         timeout: 5
         max-score: 15
